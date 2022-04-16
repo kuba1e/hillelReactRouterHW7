@@ -1,12 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import {Users, Albums, UsItem} from "../Users";
-
+import { BrowserRouter as Router } from "react-router-dom";
+import { Container } from "@mui/material";
+import { Users } from "../Users";
 
 export const App = () => {
   return (
-    <Router>
-        <Users/>
-    </Router>
+    <Container maxWidth="sm">
+      <Router>
+        <Users />
+      </Router>
+    </Container>
   );
 };

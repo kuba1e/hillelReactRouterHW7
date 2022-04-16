@@ -1,29 +1,41 @@
-import { usePhotos } from "./hooks";
+import React from "react";
+import "./Photos.css";
+import { usePhotos } from "../../utils/hooks";
 import { useParams } from "react-router-dom";
-
-const PhotoItem = ({ photo }) => {
-  console.log(photo);
-  return (
-    <>
-      <p>Photo: {photo.title}</p>
-      <img src={photo.thumbnailUrl} />
-    </>
-  );
-};
+import { ListItem, List, ListItemAvatar, ListItemText } from "@mui/material";
 
 export const Photos = ({ id }) => {
   const { albumId } = useParams();
   const photosData = usePhotos(albumId, id);
   if (+albumId !== id) return null;
   return (
-    <ul>
+    <List>
       {photosData.map((photo) => {
         return (
-          <li key={photo.id}>
-            <PhotoItem photo={photo} />
-          </li>
+          <ListItem
+            divider
+            sx={{
+              justifyContent: "center",
+            }}
+            key={photo.id}
+          >
+            <ListItemAvatar
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <ListItemText>{photo.title}</ListItemText>
+              <img
+                className="album-photo"
+                src={`${photo.thumbnailUrl}`}
+                alt="album"
+              />
+            </ListItemAvatar>
+          </ListItem>
         );
       })}
-    </ul>
+    </List>
   );
 };

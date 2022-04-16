@@ -38,8 +38,7 @@ const initialState = {
   usersData: [],
   albumsData: [],
   photosData: [],
-  loading: "idle",
-  error: "",
+  error: null,
 };
 
 const usersSlice = createSlice({
@@ -47,26 +46,23 @@ const usersSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [fetchUsers.pending]: (state) => {
-      state.loading = "pending";
-    },
     [fetchUsers.fulfilled]: (state, { payload }) => {
       state.usersData = payload;
-      state.loading = "fulfilled";
     },
-    [fetchAlbums.pending]: (state) => {
-      state.loading = "pending";
+    [fetchUsers.rejected]: (state, { payload }) => {
+      state.error = payload;
     },
     [fetchAlbums.fulfilled]: (state, { payload }) => {
       state.albumsData = payload;
-      state.loading = "fulfilled";
     },
-    [fetchAlbumsPhoto.pending]: (state) => {
-      state.loading = "pending";
+    [fetchAlbums.rejected]: (state, { payload }) => {
+      state.error = payload;
     },
     [fetchAlbumsPhoto.fulfilled]: (state, { payload }) => {
       state.photosData = payload;
-      state.loading = "fulfilled";
+    },
+    [fetchAlbumsPhoto.rejected]: (state, { payload }) => {
+      state.error = payload;
     },
   },
 });

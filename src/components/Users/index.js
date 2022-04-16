@@ -1,2 +1,2 @@
-import { Users, UsItem } from "./Users";
-export  {Users, UsItem}
+import { Users } from "./Users";
+export  {Users}

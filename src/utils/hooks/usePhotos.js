@@ -1,4 +1,4 @@
-import { fetchAlbumsPhoto } from "../../../features/users";
+import { fetchAlbumsPhoto } from "../../features/users";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 
@@ -10,7 +10,7 @@ export const usePhotos = (albumId, id) => {
     if (+albumId === id) {
       dispatch(fetchAlbumsPhoto(albumId));
     }
-  }, []);
+  }, [albumId]);
 
   return photosData;
 };

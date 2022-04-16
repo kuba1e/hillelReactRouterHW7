@@ -1,2 +1,2 @@
 import { Photos } from "./Photos";
-export {Photos}
+export { Photos };
